@@ -1,0 +1,13 @@
+.Filters{
+    border: solid 1px;
+    position: sticky;
+    border-radius: 8px;
+}
+
+.FiltersTitle{
+    background-color: rgb(179, 179, 179);
+}
+
+.colorFilter{
+    background-color: darkgray;
+}

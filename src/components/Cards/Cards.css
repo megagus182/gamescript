@@ -1,0 +1,20 @@
+.efecto{
+    float: top;
+}
+
+.efecto:hover {
+    margin-top: -20px;
+    transition: margin 1s ease-out;
+    transition: 0.5s;
+    
+}
+
+.imgCard:hover{
+    color: rgb(10, 0, 201);
+    transition: 0.5s;
+}
+
+.imagenEnCard{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
