@@ -1,12 +1,12 @@
-import { Box } from "@mui/material";
 import React from "react";
+import { Box } from "@mui/material";
 import { Navbar, Footer } from "..";
 
 export default function ClientLayout({ children }) {
   return (
     <>
       <Navbar />
-      <Box>{children}</Box>
+      <Box >{children}</Box>
       <Footer />
     </>
   );

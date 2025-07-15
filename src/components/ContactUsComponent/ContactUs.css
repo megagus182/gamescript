@@ -17,13 +17,17 @@
     color: #5e83ba;
 }
 
-.boxcontact{
-    background-image: url("../../assets/imgcontact.png");
-    background-repeat: "no-repeat";
-    object-fit:"cover"; 
-    height: 800px; 
-    background-size:"cover"; 
-    background-position: "25% 75%"
+.boxcontact {
+  background-image: url("../../assets/imgcontact.png");
+  background-repeat: no-repeat;
+  object-fit: cover;
+  height: 800px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
 

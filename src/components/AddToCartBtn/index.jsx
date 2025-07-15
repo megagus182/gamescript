@@ -6,11 +6,6 @@ import { AddShoppingCart, ShoppingCart } from "@mui/icons-material";
 import { addToCart, deleteFromCart } from "../../redux/actions/user";
 import Swal from "sweetalert2";
 
-const buttonStyles = {
-  bgcolor: "primary.main",
-  color: "white",
-};
-
 export default function AddToCartButton({
   id,
   price,

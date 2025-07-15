@@ -1,174 +1,178 @@
-import { Alert, Button, FormControl, FormHelperText, FormLabel, Grid, TextareaAutosize, TextField, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import {React,  useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { useEffect } from 'react';
-import Swal from 'sweetalert2';
-import "./ContactUs.css"
-import validation from './validations';
-import { Check, PriorityHigh } from '@mui/icons-material';
-
-
+import emailjs from "@emailjs/browser";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  TextField,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import { useState, useRef, useEffect } from "react";
+import Swal from "sweetalert2";
+import validation from "./validations";
 
 const ContactComponent = () => {
-    const [result, setResult] = useState(false)
-    const [contactInfo, setContactInfo] = useState({
-      phone:"",
-      fullName:"",
-      email:""
-    })
-    const [errors, setErrors] = useState({})
-    
-   
-    useEffect(() => {
-      const check = validation(contactInfo);
-      setErrors(check);
-      
-    }, [contactInfo]);
+  const theme = useTheme();
+  const [touched, setTouched] = useState({});
 
-    function handleChange(e) {
-      const value = e.target.value;
-      const name = e.target.name;
-  
-      setContactInfo((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
+  const [contactInfo, setContactInfo] = useState({
+    phone: "",
+    fullName: "",
+    email: "",
+  });
+  const [errors, setErrors] = useState({});
+  const formRef = useRef(null);
 
+  useEffect(() => {
+    setErrors(validation(contactInfo));
+  }, [contactInfo]);
 
-   
-    const sendEmail = (e) => {
-        e.preventDefault();
-    
-        emailjs.sendForm('service_dnv4ntv', 'template_hnrenol', e.target, '4zpSHHNBQ0hkdXKkq')
-          
-          e.target.reset();
-          setResult(true)
-          Swal.fire({
-            icon:"success",
-            text:"Your message has been successfully sent. We will contact you soon!"
-          })
-      };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setContactInfo((prev) => ({ ...prev, [name]: value }));
 
-    
-      
-      
-      return(
-          
-    <Box id="contacto" className="boxcontact" sx={{marginTop:"50px",}}  >
+    setTouched((prev) => ({ ...prev, [name]: true }));
+  };
 
-        <Box id="contacto" sx={{display:"inline-block", width:"50%", margin:"100px", backgroundColor:"#edf2f4", borderRadius:"20px",  height:"605px"}}>
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs.sendForm(
+      "service_dnv4ntv",
+      "template_hnrenol",
+      e.target,
+      "4zpSHHNBQ0hkdXKkq"
+    );
+    e.target.reset();
+    Swal.fire({
+      icon: "success",
+      text: "Your message has been successfully sent!",
+    });
+  };
 
-          <form  onSubmit={sendEmail}>
-            
-            <Box sx={{display:"flex", flexDirection:"column", justifyContent:"space-evenly", height: "605px", padding:"40px", borderRadius:"20px", boxShadow: 4 , border:"solid 1px",  }}>
-         
-         <Box container  sx={{display:"flex", flexDirection:"column", gap:"8px", textAlign:"start", color:"#091d36" }}>
-         <Typography  variant='h5' gutterBottom fontWeight={"bold"}>
-                Contact Us!
-            </Typography>
-            <label htmlFor=""> Full Name</label>
-            <TextField
-            id="outlined-textarea"
-            
-            multiline
-            required
-            type={"text"}
-            name={"fullName"}
+  return (
+    <Box
+      id="contacto"
+      sx={{
+        backgroundImage: `url("/assets/imgcontact.png")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 3,
+      }}
+    >
+      <Box
+        component="form"
+        ref={formRef}
+        onSubmit={sendEmail}
+        sx={{
+          width: "100%",
+          maxWidth: 500,
+          bgcolor: theme.palette.mode === "dark" ? "#1e1e1e" : "#fefefe",
+          borderRadius: 4,
+          boxShadow: 6,
+          padding: 4,
+        }}
+      >
+        <Typography
+          variant="h5"
+          fontWeight="bold"
+          textAlign="center"
+          color="primary"
+          mb={3}
+        >
+          Contact Us
+        </Typography>
+
+        <FormControl
+          fullWidth
+          sx={{ mb: 2 }}
+          error={!!errors.name && touched.fullName}
+        >
+          <TextField
+            label="Full Name"
+            name="fullName"
             value={contactInfo.fullName}
-            sx={{boxShadow:"3", width:"250px", }}
             onChange={handleChange}
-            color={
-              errors?.name  ? (
-                  "error"
-              ): "success"
-            }
-            placeholder='Pepe Gutierrez'
-            InputProps={{ inputProps: { style: { color: 'black' }}}}
-            
-            
-            />
-             
-             
-            
-            
-            <label htmlFor=""> Phone Number</label>
-            <Box>
-
-            <TextField
-            id="outlined-textarea"
-            multiline
             required
-            type={"text"}
-            name={"phone"}
+            color="primary"
+          />
+          {errors.name && touched.fullName && (
+            <FormHelperText>{errors.name}</FormHelperText>
+          )}
+        </FormControl>
+
+        <FormControl
+          fullWidth
+          sx={{ mb: 2 }}
+          error={!!errors.phoneFormat && touched.phone}
+        >
+          <TextField
+            label="Phone Number"
+            name="phone"
             value={contactInfo.phone}
-            sx={{boxShadow:"3", width:"250px", backgroundColor:"white"}}
-            color={
-              errors?.phoneFormat ? (
-                "error"
-              ): "success"
-            }
             onChange={handleChange}
-            
-            placeholder="1135462365"
-            className='text'
-            InputProps={{ inputProps: { style: { color: 'black' }}}}
-            />
-            
-           
-            </Box>
-            
-           <label htmlFor="">Enter Email</label>
-           
-
-            <TextField
-            id="outlined-textarea"
-            
-            multiline
             required
-            type={"email"}
-            name={"email"}
-            value={contactInfo.email}
-            sx={{boxShadow:"3", width:"250px", backgroundColor:"white"}}
-            color={
-              errors.emailFormat ? (
-                "error"
-              ): "success"
-            }
-            className='textfield'
-            onChange={handleChange}
-            placeholder="emaildeprueba@gmail.com"
-            InputProps={{ inputProps: { style: { color: 'black' }}}}
-            />
-           
-          
-            
-        </Box>
-            <Box sx={{display:"flex", flexDirection:"column", textAlign:"start" , gap:"10px", color:"#091d36"}}>
-              
-            
-            <label htmlFor="" >Message</label>
-            <TextField
-              id="outlined-multiline-static"
-              multiline
-              rows={3}
-              sx={{marginRight:"20px", boxShadow:"3", backgroundColor:"white" }}
-              color={window.localStorage.getItem("themeMode") === "dark" ? "primary" : "primary"}
-              InputProps={{ inputProps: { style: { color: 'black' }}}}
-              
-              />
-            
-              <Button type='submit' sx={{backgroundColor:"#5e83ba", width:"50%", color:"#091d36", marginTop:"50px" ,"&:hover": {backgroundColor:"#091d36", color:"#5e83ba"}}} disabled={!errors?.emailFormat && !errors?.phoneFormat ? false : true} >Submit</Button>
-            </Box>
-            
-            </Box>
-        </form>
-        </Box>
-       
-    </Box>
-      )
- }
+            color="primary"
+          />
+          {errors.phoneFormat && touched.phone && (
+            <FormHelperText>{errors.phoneFormat}</FormHelperText>
+          )}
+        </FormControl>
 
+        <FormControl
+          fullWidth
+          sx={{ mb: 2 }}
+          error={!!errors.emailFormat && touched.email}
+        >
+          <TextField
+            label="Email"
+            name="email"
+            value={contactInfo.email}
+            onChange={handleChange}
+            required
+            type="email"
+            color="primary"
+          />
+          {errors.emailFormat && touched.email && (
+            <FormHelperText>{errors.emailFormat}</FormHelperText>
+          )}
+        </FormControl>
+
+        <FormControl fullWidth sx={{ mb: 3 }}>
+          <TextField
+            label="Message"
+            name="message"
+            multiline
+            rows={4}
+            required
+            color="primary"
+          />
+        </FormControl>
+
+        <Button
+          type="submit"
+          variant="contained"
+          fullWidth
+          disabled={!!errors.emailFormat || !!errors.phoneFormat}
+          sx={{
+            backgroundColor: "#5e83ba",
+            color: "#fff",
+            fontWeight: "bold",
+            "&:hover": {
+              backgroundColor: "#091d36",
+              color: "#fff",
+            },
+          }}
+        >
+          Send Message
+        </Button>
+      </Box>
+    </Box>
+  );
+};
 
 export default ContactComponent;

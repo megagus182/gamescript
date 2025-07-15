@@ -1,16 +1,13 @@
 import * as React from 'react';
-import { Box, Card, CardContent, Grid, TextField, FormLabel, Select, MenuItem } from "@mui/material";
+import { Box, Card, CardContent, Grid, Select, MenuItem } from "@mui/material";
 import Button from '@mui/material/Button';
-import FilledInput from '@mui/material/FilledInput';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getGenres,postGames } from '../../redux/actions/videoGame';
-import {useParams} from "react-router-dom";
 
 function validate(input){
     var errors = {}

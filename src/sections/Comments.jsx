@@ -2,12 +2,9 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
-import { useParams, Link } from "react-router-dom";
 import { auth } from "../firebase/credenciales";
-import Item from "../components/Items/Item";
 import LinkIcon from "@mui/icons-material/Link";
-import { getComments } from "../redux/actions/comment";
-import { postComments, updateComments } from "../redux/actions/comment";
+import { updateComments } from "../redux/actions/comment";
 import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import FormatItalicIcon from "@mui/icons-material/FormatItalic";
@@ -15,7 +12,6 @@ import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
 import {
   Button,
   Typography,
-  Container,
   Box,
   Grid,
   TextField,
@@ -24,8 +20,6 @@ import {
   Avatar,
   Rating,
 } from "@mui/material";
-import FloatingActionButtons from "../components/EditForm/BotonEditar";
-import Sidebar from "../components/Sidebar/Sidebar";
 import { useLocation } from "react-router-dom";
 import { AnswerModal, Answer } from "../components";
 import "./Comments.css";
@@ -38,10 +32,8 @@ export default function Comments({ list, type }) {
   const user = useSelector((state) => state.user.status);
   const userImage = useSelector((state) => state.user.image);
   const dispatch = useDispatch();
-  var userId = "";
   var userName = "";
   if (auth.currentUser !== null) {
-    userId = auth.lastNotifiedUid;
     userName = auth.currentUser.email;
   }
   useEffect(() => {}, [gameComment]);
@@ -61,7 +53,6 @@ export default function Comments({ list, type }) {
       return;
     } else {
       if (user === "guest") {
-        setIsLogued(false);
         Swal.fire({
           toast: true,
           icon: "error",
@@ -72,7 +63,6 @@ export default function Comments({ list, type }) {
         });
         return;
       } else {
-        //value.comment.id = 4;
         dispatch(updateComments(value));
         setValue({
           comment: {
@@ -83,7 +73,6 @@ export default function Comments({ list, type }) {
             rating_like: 3,
           },
         });
-        setIsLogued(true);
         Swal.fire({
           toast: true,
           icon: "success",
@@ -119,8 +108,6 @@ export default function Comments({ list, type }) {
 
   //estado local para estrellas Rating
   const [estrella, setEstrella] = React.useState(3);
-
-  const [isLogued, setIsLogued] = React.useState(false);
 
   //HandleChange para Form
   const handleChange = (e) => {

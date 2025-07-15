@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Container } from '@mui/system';
 import { LandingForm } from '../components';
-import { Button, Typography } from '@mui/material';
 
 const styles = {
 	container: {

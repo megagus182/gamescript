@@ -8,23 +8,51 @@ import { orderAlphabetically } from "../../redux/reducers/videoGame";
 export default function SelectType() {
   const dispatch = useDispatch();
   const { sort } = useSelector((state) => state.videogames.filters);
-  
+
   const handleType = (event) => {
     dispatch(orderAlphabetically(event.target.value));
   };
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, minWidth: 160, backgroundColor:"secondary.main", borderRadius:1 }}>
-        <InputLabel>A-Z</InputLabel>
-        <Select value={sort} onChange={handleType} autoWidth label="Type">
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value="asc">A/z</MenuItem>
-          <MenuItem value="desc">Z/a</MenuItem>
-        </Select>
-      </FormControl>
-    </div>
+    <FormControl
+      size="small"
+      sx={{
+        m: 1,
+        minWidth: 140,
+        bgcolor: "background.paper", 
+        borderRadius: 1,
+        "& .MuiInputLabel-root": {
+          color: "text.primary",      
+          fontWeight: "medium",
+        },
+        "& .MuiSelect-select": {
+          color: "text.primary",      
+          fontWeight: "medium",
+        },
+        "& .MuiOutlinedInput-notchedOutline": {
+          borderColor: "secondary.main", 
+        },
+        "&:hover .MuiOutlinedInput-notchedOutline": {
+          borderColor: "secondary.dark",  
+        },
+        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          borderColor: "primary.main",     
+        },
+      }}
+    >
+      <InputLabel id="select-type-label">Order</InputLabel>
+      <Select
+        labelId="select-type-label"
+        value={sort}
+        onChange={handleType}
+        label="Ordenar"
+      >
+        <MenuItem value="">
+          <em>Ninguno</em>
+        </MenuItem>
+        <MenuItem value="asc">A/Z</MenuItem>
+        <MenuItem value="desc">Z/A</MenuItem>
+      </Select>
+    </FormControl>
   );
 }

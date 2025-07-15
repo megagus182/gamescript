@@ -1,20 +1,12 @@
-.efecto{
-    float: top;
+.cardHover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.efecto:hover {
-    margin-top: -20px;
-    transition: margin 1s ease-out;
-    transition: 0.5s;
-    
+.cardHover:hover {
+  transform: translateY(-8px);
 }
 
-.imgCard:hover{
-    color: rgb(10, 0, 201);
-    transition: 0.5s;
-}
-
-.imagenEnCard{
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+.imagenEnCard {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }

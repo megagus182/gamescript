@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import axios from "axios";
 import { Divider, List, ListItem } from "@mui/material";
 
 import { UserItem } from "../components";

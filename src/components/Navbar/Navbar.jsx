@@ -10,7 +10,6 @@ import {
   IconButton,
   MenuItem,
   Menu,
-  Button,
   Divider,
   Container,
 } from "@mui/material";
@@ -77,42 +76,63 @@ const Navbar = () => {
   );
 
   return (
-    <AppBar position='sticky'>
+    <AppBar
+      position="sticky"
+      sx={{ bgcolor: "background.paper", color: "text.primary" }}
+    >
       <Container maxWidth="lg" sx={{ marginX: "auto" }}>
-        <Toolbar sx={{ display: "flex", gap:{xs:1, md:10}, justifyContent:{xs:'space-between', md:'center'} }}>
-          <Sidebar />
-          <Link className={styles.link} to="/home">
-            <img style={styles.brand} src={logo} alt={"logo"} />
-          </Link>
+        <Toolbar
+          disableGutters
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 2,
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <Sidebar />
+            <Link className={styles.link} to="/home">
+              <img style={styles.brand} src={logo} alt="logo" />
+            </Link>
+          </Box>
+
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+            }}
+          >
             <Searchbar setInput={setInput} input={input} />
-          <Box sx={{display: 'flex'}}>
-            <Box display={'flex'} alignItems='center'>
-              <CartWidget />
-              {Boolean(status !== "guest") && (
-                <>
-                  <NotificationsWidget />
-                  <IconButton
-                    size="large"
-                    edge="end"
-                    aria-label="account of current user"
-                    aria-controls={menuId}
-                    aria-haspopup="true"
-                    onClick={handleProfileMenuOpen}
-                    color="inherit"
-                  >
-                    <AccountCircle />
-                  </IconButton>
-                </>
-              )}
-              <Divider
-                orientation="vertical"
-                variant="middle"
-                flexItem
-                sx={{ marginX: 3, color: "secondary", display: {xs:'none', md:'block'} }}
-              />
-              <Box display={{xs:'none', md:'block'}}>
-                <SessionButton  />
-              </Box>
+          </Box>
+
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <CartWidget />
+            {status !== "guest" && (
+              <>
+                <NotificationsWidget />
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </>
+            )}
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              flexItem
+              sx={{ marginX: 2, display: { xs: "none", md: "block" } }}
+            />
+            <Box display={{ xs: "none", md: "block" }}>
+              <SessionButton />
             </Box>
           </Box>
         </Toolbar>

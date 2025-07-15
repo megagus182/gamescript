@@ -3,8 +3,6 @@ import { Typography, Container, Grid, Box } from '@mui/material';
 import { useSelector } from 'react-redux';
 import './AddWishes.css';
 
-import { ReviewForm } from '..';
-
 import Game from './Game';
 
 const MyPurchases = () => {

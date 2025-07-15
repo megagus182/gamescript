@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLoading } from "../../redux/reducers/videoGame";
 import { useEffect } from "react";
 import { getGames } from "../../redux/actions/videoGame";
-import { Box, Button, List, ListItem, Menu, MenuItem } from "@mui/material";
+import { Box, Button, Paper, Typography , Menu, MenuItem } from "@mui/material";
 import { KeyboardArrowDown } from "@mui/icons-material";
 import "./filter.css";
 import DisableElevation from "./CleanButton";
@@ -84,53 +84,53 @@ export default function Filter() {
             </MenuItem>
 			</Menu>
       <Box
-        className="Filters"
-        sx={{
-          display: {xs:'none', md: 'flex'},
-          textAling: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <List
-          subheader={
-            <Box
-              sx={{ fontSize: 25 }}
-              color={
-                window.localStorage.getItem("themeMode") === "dark"
-                  ? "white"
-                  : "black"
-              }
-            >
-              FILTERS
-            </Box>
-          }
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
-            <ListItem sx={{ marginLeft: "45px" }}>
-              <SelectRating />
-            </ListItem>
-            <ListItem>
-              <SelectPrice />
-            </ListItem>
-            <ListItem sx={{ marginLeft: "22px" }}>
-              <SelectType />
-            </ListItem>
-            <ListItem sx={{ marginLeft: "22px" }}>
-              <SelectGenere />
-            </ListItem>
-            <ListItem sx={{ marginLeft: "70px" }}>
-              <DisableElevation />
-            </ListItem>
-          </Box>
-        </List>
-      </Box>
+  className="Filters"
+  sx={{
+    display: { xs: "none", md: "flex" },
+    flexDirection: "column",
+    alignItems: "center",
+    width: "300px",
+    p: 2,
+    position: "sticky",
+    top: "90px",
+    height: "fit-content",
+  }}
+>
+  <Paper
+    elevation={3}
+    sx={{
+      width: "100%",
+      p: 3,
+      borderRadius: 3,
+      bgcolor: "background.paper",
+    }}
+  >
+<Typography
+  variant="h6"
+  align="center"
+  gutterBottom
+  color="text.primary"
+  sx={{ fontWeight: 'bold' }}
+>
+  FILTERS
+</Typography>
+
+
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+      }}
+    >
+      <SelectRating />
+      <SelectPrice />
+      <SelectType />
+      <SelectGenere />
+      <DisableElevation />
+    </Box>
+  </Paper>
+</Box>
     </>
   );
 }
