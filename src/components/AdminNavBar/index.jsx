@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Drawer, Link as MuiLink } from "@mui/material";
+import { Button, Drawer } from "@mui/material";
 import AdminMenu from "./AdminMenu";
 
 export default function AdminNavBar() {

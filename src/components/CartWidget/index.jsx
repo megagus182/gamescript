@@ -14,7 +14,6 @@ import { ShoppingCart } from "@mui/icons-material";
 import { CartCard } from "../";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-const drawerWidth = 240;
 
 export default function CartWidget() {
   const cartList = useSelector((state) => state.user.cartList);

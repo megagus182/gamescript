@@ -96,16 +96,6 @@ function handlePush(e) {
     }) 
 }
 
-
-function handleDelete(el){
-    setInput({
-        ...input,
-        genres: input.genres.filter(x=> x!== el)
-    })
-}
-
-
-
   function handleSubmit(e){
     e.preventDefault();
     if(input.name && input.description&&input.background_image&&input.price&&input.rating&&input.requirements
@@ -129,7 +119,7 @@ function handleDelete(el){
 
 useEffect(()=> {
     dispatch(getGenres())
-     }, []);
+     }, [dispatch]);
 
   return (
     <Box

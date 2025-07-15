@@ -21,6 +21,7 @@ import Purchases from "./components/Purchases/Purchases";
 import Collection from "./components/Collection/Collection";
 import LandingPage from "./components/Landing/LandingPage";
 import Nosotros from "./components/Nosotros/Nosotros";
+import { Contact } from "./sections/Contact";
 
 const Routes = ({ setMode, mode }) => {
   const statusChecker = useStatusChecker();
@@ -48,6 +49,7 @@ const Routes = ({ setMode, mode }) => {
         <Route path="/colection" element={<Collection />} />
         <Route path="/account/*" element={<Account />} />
         <Route path="/about" element={<Nosotros />} />
+        <Route path="/contact" element={<Contact />} />
       </Rutas>
     </>
   );

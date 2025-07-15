@@ -81,7 +81,7 @@ const ContactComponent = () => {
           variant="h5"
           fontWeight="bold"
           textAlign="center"
-          color="primary"
+          sx={{ color: theme.palette.mode === "dark" ? "#fefefe" : "#1e1e1e" }}
           mb={3}
         >
           Contact Us

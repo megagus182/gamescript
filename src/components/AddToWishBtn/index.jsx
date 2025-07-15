@@ -5,11 +5,6 @@ import { FavoriteBorder, Favorite } from "@mui/icons-material";
 import { addNewWish, deleteWish } from "../../redux/actions/user";
 import Swal from "sweetalert2";
 
-const buttonStyles = {
-	bgcolor: 'primary.main',
-	color: 'white'
-}
-
 export default function AddToWishBtn({ name, image, id, price, styles, ...props}) {
   const {wishes} = useSelector((state) => state.user);
   const user = useSelector((state) => state.user.status);

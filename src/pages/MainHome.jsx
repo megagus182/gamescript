@@ -1,5 +1,5 @@
 import { About, Games, FilterSection } from "../sections";
-import { ClientLayout, Footer, Social } from "../components";
+import { ClientLayout, Social } from "../components";
 import { Stack } from "@mui/material";
 import ContactComponent from "../components/ContactUsComponent/ContactUs";
 

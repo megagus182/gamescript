@@ -1,22 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { ColorModeContext } from "../Theme/Theme";
 import { Link } from "@mui/material";
 import {
   Card,
   CardContent,
   CardMedia,
   Typography,
-  Box,
-  useTheme,
+  Box
 } from "@mui/material";
 import { AddToCartButton, AddToWishes } from "../";
 import "./Cards.css";
 
 const MainCard = ({ name, background_image, price, id, discount }) => {
-  const theme = useTheme();
-  const { mode } = useContext(ColorModeContext);
-
   const getDiscountPercentage = () => {
     return `${Math.floor(
       100 - (discount.currentPrice * 100) / discount.prevPrice
